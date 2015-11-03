@@ -21,6 +21,8 @@
   <div id="map"></div>
 
   <script>
+  
+//Create the map
 
   var map;
   function initMap() {
@@ -29,6 +31,8 @@
       zoom: 15
     });
   }
+
+//Isolate a specific historic site by clicking name on the map -- and grab the name of the site to use in another ajax call.
 
   $('div').on('click', function() {
     var mapPointInfo = this.getElementsByClassName('gm-title');
