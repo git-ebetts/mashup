@@ -4,60 +4,31 @@
   <title>Mashup</title>
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
-      <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-      </style>
+    <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic|Lato:100,300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
 
-      <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"></script>
+<div class="wrapper">
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-    </head>
+<div class="topline">ARTIFACTS BY ORIGIN</div>
+<p class="ctr">Click on a historic location below</p>
 
 <body>
 
-      <div id="map"></div>
+  <div id="map" class="map"></div>
+  <div id="museumSearchInfo"></div>
+  <div class="resultsDiv">
+      <div id="metMuseumResults" class="metMuseumResults"></div>
+  </div>
 
-      <script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="scripts.js"></script>
 
-//Create the map
-
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 25.730324, lng: 32.608309},
-      zoom: 15
-    });
-
-//Isolate a specific historic site by clicking name on the map -- and grab the name of the site to use in another ajax call.
-
-      //store the original setContent-function
-      var fx = google.maps.InfoWindow.prototype.setContent;
-
-      //override the built-in setContent-method
-      google.maps.InfoWindow.prototype.setContent = function (content) {
-          //when argument is a node
-          if (content.querySelector) {
-              //search for the address
-              var name = content.querySelector('.gm-title');
-              if (name) {
-                console.log(name.textContent);
-                
-                }
-              }
-          //run the original setContent-method
-          fx.apply(this, arguments);
-        };
-      }
-      </script>
+</div>
     </body> 
     </html>
 
-<!--  Thank you, Dr. Molle http://stackoverflow.com/questions/21486868/click-event-listener-on-styled-map-icons-and-labels/21488643#21488643 for the basis of approach to grabbing historic site name. -->
+<!--  Thank you, Dr. Molle http://stackoverflow.com/questions/21486868
+ for the basis of this method for grabbing historic site name. -->

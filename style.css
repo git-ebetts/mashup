@@ -1,0 +1,116 @@
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+background-color: white;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center; 
+}
+
+.topline {
+  width: 100%;
+  height: 90px;
+  background-color:#08004b;
+  text-align: center;
+  font-family:'Lato', sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  font-size: 70px;
+  color: white;
+}
+
+
+.map{  
+  width: 90%;
+  height: 550px;
+  margin:auto;
+}
+
+.museumResults {
+  width: 90%;
+  text-align: center;
+  margin: 15px auto;
+}
+
+.museumSearchInfo {
+  width: 90%;
+  height: 40px;
+  margin-top:20px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left: 10px;
+  padding-top: 14px;
+  background-color:#dedede;
+  font-family:'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: #08004b;
+  text-align: left;
+}
+
+.resultsDiv {
+  width: 90%;
+  height: auto;
+  min-height: 188px;
+  margin:auto;
+}
+
+.container{
+  float: left;
+  width: 20%;
+  height: 250px;
+  margin: 20px;
+  padding-right: 10px;
+}
+
+
+h4 {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: bold 700;
+  font-size: 18px;
+  color: white;
+  text-align: left;
+}
+
+a {
+font-weight: bold;
+}
+
+a:link {
+color: black;
+text-decoration: none;
+}
+
+a:visited {
+color: #666666;
+text-decoration: none;
+}
+
+a:hover {
+color: #939393;
+text-decoration: none;
+}
+
+
+p {
+  font-family:'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: black;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+
+p.ctr {
+  font-family:'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: black;
+  text-align: center;
+}
