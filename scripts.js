@@ -39,16 +39,50 @@ function initMap() {
     //replace word spaces with underscores
     word = word.split(' ').join('_');
 
-    console.log(word);
+    // console.log(word);
+    searchMetMuseum(word);
+  };
+}
+
+//-----------------------
+//PUT MET RESULTS ON PAGE
+//-----------------------
+
+function createMetHTML() {
+// console.log(metMusData);
+console.log(word);
+
+word = word.split('_').join(' ');
+
+var htmlCategoryString = '';
+
+htmlCategoryString += '<div class="museumSearchInfo">' + 'Items from ' + '<b>' + word + '</b>' + ' in the Metropolitan Museum of Art (www.metmuseum.org)' + '</div>';
+
+$('#museumSearchInfo').append(htmlCategoryString);
+
+var htmlString = '';
+var dataLength = metMusData.collection.items.length;
+
+for (var i = 0; i < dataLength; i++){
+htmlString += '<div class="container">';
+// htmlString += '<img src=' + metMusData.collection.items[i].image_thumb + '/>';
+htmlString += '<h4>' + '<a href = ' + metMusData.collection.items[i].website_href + '>' + metMusData.collection.items[i].title + '</a>';
+htmlString += '<p>' + 'Accession Number: ' + metMusData.collection.items[i].accessionNumber + '</p>';
+htmlString += '<p>' + 'Date: ' + metMusData.collection.items[i].dateText + '</p>';
+htmlString += '<p>' + 'Medium: ' + metMusData.collection.items[i].medium + '</p>';
+// htmlString += '<p>' + 'Gallery: ' + metMusData.collection.items[i].gallery + '</p>';
+htmlString += '</div>';
+}
+
+$('#metMuseumResults').append(htmlString);
+}
 
 //---------------------------
 //AJAX CALL TO MET MUSEUM API
 //---------------------------
 
-searchMetMuseum(word);
-
 function searchMetMuseum(word){
-  console.log(word);
+  // console.log(word);
 
   var metMusURL = 'http://scrapi.org/search/' + word;
 
@@ -67,47 +101,17 @@ function searchMetMuseum(word){
       console.log(metMusData);
 
       createMetHTML();
-
-//-----------------------
-//PUT MET RESULTS ON PAGE
-//-----------------------
-
-      function createMetHTML() {
-
-        console.log(metMusData);
-        console.log(word);
-        word = word.split('_').join(' ');
-
-        var htmlCategoryString = '';
-         htmlCategoryString += '<div class="museumSearchInfo">' + 'Items from ' + '<b>' + word + '</b>' + ' in the Metropolitan Museum of Art (www.metmuseum.org)' + '</div>';
-
-      $('#museumSearchInfo').append(htmlCategoryString);
-
-        var htmlString = '';
-        var dataLength = metMusData.collection.items.length;
-
-        for (var i = 0; i < dataLength; i++){
-        htmlString += '<div class="container">';
-        // htmlString += '<img src=' + metMusData.collection.items[i].image_thumb + '/>';
-        htmlString += '<h4>' + '<a href = ' + metMusData.collection.items[i].website_href + '>' + metMusData.collection.items[i].title + '</a>';
-        htmlString += '<p>' + 'Accession Number: ' + metMusData.collection.items[i].accessionNumber + '</p>';
-        htmlString += '<p>' + 'Date: ' + metMusData.collection.items[i].dateText + '</p>';
-        htmlString += '<p>' + 'Medium: ' + metMusData.collection.items[i].medium + '</p>';
-        // htmlString += '<p>' + 'Gallery: ' + metMusData.collection.items[i].gallery + '</p>';
-        htmlString += '</div>';
-      }
-
-      $('#metMuseumResults').append(htmlString);
     }
-  }
+  });
 }
-);
-    }
-  };
-}
+
 
 
 $(document).ready(function(){
   console.log("We are ready!");
   initMap();
 });
+
+
+//Thank you, Dr. Molle http://stackoverflow.com/questions/21486868
+//for the basis of this method for grabbing historic site name. 
