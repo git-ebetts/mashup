@@ -3,6 +3,38 @@ var metMusData = [];
 var word;
 var map;
 
+//---------------------------
+//AJAX CALL TO MET MUSEUM API
+//---------------------------
+
+function searchMetMuseum(word){
+  // console.log(word);
+
+  var metMusURL = 'http://scrapi.org/search/' + word;
+
+  $.ajax({
+    url: metMusURL,
+    type: 'GET',
+    dataType: 'json',
+    error: function(data){
+      
+    },
+    success: function(data){
+
+      metMusData = data;
+
+      //Make certain we got the data
+      console.log(metMusData);
+
+      createMetHTML();
+    }
+  });
+}
+
+//--------------
+//CREATE THE MAP
+//--------------
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 25.730324, lng: 32.608309},
@@ -49,8 +81,8 @@ function initMap() {
 //-----------------------
 
 function createMetHTML() {
-// console.log(metMusData);
-console.log(word);
+
+//Create bar with location info & museum attribution
 
 word = word.split('_').join(' ');
 
@@ -63,6 +95,8 @@ $('#museumSearchInfo').append(htmlCategoryString);
 var htmlString = '';
 var dataLength = metMusData.collection.items.length;
 
+//Create museum search results
+
 for (var i = 0; i < dataLength; i++){
 htmlString += '<div class="container">';
 // htmlString += '<img src=' + metMusData.collection.items[i].image_thumb + '/>';
@@ -70,41 +104,11 @@ htmlString += '<h4>' + '<a href = ' + metMusData.collection.items[i].website_hre
 htmlString += '<p>' + 'Accession Number: ' + metMusData.collection.items[i].accessionNumber + '</p>';
 htmlString += '<p>' + 'Date: ' + metMusData.collection.items[i].dateText + '</p>';
 htmlString += '<p>' + 'Medium: ' + metMusData.collection.items[i].medium + '</p>';
-// htmlString += '<p>' + 'Gallery: ' + metMusData.collection.items[i].gallery + '</p>';
 htmlString += '</div>';
 }
 
 $('#metMuseumResults').append(htmlString);
 }
-
-//---------------------------
-//AJAX CALL TO MET MUSEUM API
-//---------------------------
-
-function searchMetMuseum(word){
-  // console.log(word);
-
-  var metMusURL = 'http://scrapi.org/search/' + word;
-
-  $.ajax({
-    url: metMusURL,
-    type: 'GET',
-    dataType: 'json',
-    error: function(data){
-      
-    },
-    success: function(data){
-
-      metMusData = data;
-
-      //Make certain we got the data
-      console.log(metMusData);
-
-      createMetHTML();
-    }
-  });
-}
-
 
 
 $(document).ready(function(){
