@@ -8,7 +8,6 @@ var map;
 //---------------------------
 
 function searchMetMuseum(word){
-  // console.log(word);
 
   var metMusURL = 'http://scrapi.org/search/' + word;
 
